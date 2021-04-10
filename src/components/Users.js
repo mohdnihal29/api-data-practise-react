@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const ResourceList = ({ resourceName }) => {
-  const [resourceList, setResourceList] = useState([]);
+const Users = ({ resourceName }) => {
+  const [resources, setResources] = useState([]);
 
   const fetchResources = async (resourceName) => {
     const response = await axios.get(
       `https://jsonplaceholder.typicode.com/${resourceName}`
     );
-    setResourceList(response.data);
+
+    setResources(response.data);
   };
 
   useEffect(() => {
@@ -17,11 +18,11 @@ const ResourceList = ({ resourceName }) => {
 
   return (
     <ul>
-      {resourceList.map((resource) => (
-        <li key={resource.id}>{resource.title}</li>
+      {resources.map((resources) => (
+        <li key={resources.id}>{resources.name}</li>
       ))}
     </ul>
   );
 };
 
-export default ResourceList;
+export default Users;
